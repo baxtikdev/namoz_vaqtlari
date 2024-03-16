@@ -1,52 +1,47 @@
 # German translations for PROJECT.
-# Copyright (C) 2023 ORGANIZATION
+# Copyright (C) 2024 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-02-20 17:41+0500\n"
-"PO-Revision-Date: 2023-12-04 14:40+0500\n"
+"POT-Creation-Date: 2024-03-16 20:09+0500\n"
+"PO-Revision-Date: 2024-03-16 20:28+0500\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
 "Language-Team: de <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.14.0\n"
+"Generated-By: Babel 2.9.1\n"
 
-#: handlers/user.py:121 handlers/user.py:259
-#: handlers/user.py:266
+#: handlers/user.py:123 handlers/user.py:265 handlers/user.py:273
 msgid "🕌 Masjidni tanlang:"
 msgstr "🕌 Масжидни танланг:"
 
-#: handlers/user.py:121 handlers/user.py:259
-#: handlers/user.py:266
+#: handlers/user.py:123 handlers/user.py:265 handlers/user.py:273
 msgid "Bu hudud masjidlari tez orada qoʻshiladi."
 msgstr "Бу ҳудуд масжидлари тез орада қўшилади."
 
-#: handlers/user.py:176 handlers/user.py:202
-#: handlers/user.py:527 keyboards/inline.py:37
-#: keyboards/inline.py:64 keyboards/inline.py:117
-#: keyboards/inline.py:157 keyboards/inline.py:178
-#: keyboards/inline.py:213 keyboards/inline.py:225
-#: keyboards/inline.py:237 keyboards/inline.py:266
+#: handlers/user.py:179 handlers/user.py:208 handlers/user.py:568
+#: keyboards/inline.py:37 keyboards/inline.py:64 keyboards/inline.py:117
+#: keyboards/inline.py:157 keyboards/inline.py:178 keyboards/inline.py:213
+#: keyboards/inline.py:225 keyboards/inline.py:237 keyboards/inline.py:266
 msgid "🏡 Bosh menyu"
 msgstr "🏡 Бош меню"
 
-#: handlers/user.py:224 handlers/user.py:467
-#: handlers/user.py:603
+#: handlers/user.py:230 handlers/user.py:506 handlers/user.py:658
 msgid "🏙 Hududni tanlang:"
 msgstr "🏙 Ҳудудни танланг:"
 
-#: handlers/user.py:237
+#: handlers/user.py:243
 msgid "🏘 Tuman yoki shaharni tanlang:"
 msgstr "🏘 Туман ёки шаҳарни танланг:"
 
-#: handlers/user.py:322 handlers/user.py:564
+#: handlers/user.py:327 handlers/user.py:618
 msgid ""
 "\n"
 "🕌 <b>{masjid} statistikasi</b>\n"
@@ -64,11 +59,49 @@ msgstr ""
 "{region} бўйича: {region_count}-ўрин\n"
 "Ўзбекистон бўйича: {global_count}-ўрин\n"
 
-#: handlers/user.py:345
+#: handlers/user.py:350
 msgid "Ma'lumotlar topilmadi"
 msgstr "Маълумотлар топилмади"
 
-#: handlers/user.py:366
+#: handlers/user.py:372
+msgid ""
+"\n"
+"🕌 <b>{masjid} namoz vaqtlari</b>\n"
+"📍 <b>Manzil:</b> {manzili1}, {manzili2}\n"
+"\n"
+"🕒 <i>Oxirgi marta {sana} da yangilangan.</i>\n"
+"\n"
+"<b>🏞 Bomdod:</b> Azon – {bomdod}\n"
+"\n"
+"<b>🌇 Peshin:</b> Azon – {peshin}\n"
+"\n"
+"<b>🌆 Asr:</b> Azon – {asr}\n"
+"\n"
+"<b>🌃 Shom:</b> Azon – {shom}\n"
+"\n"
+"<b>🌌 Xufton:</b> Azon – {hufton}\n"
+"\n"
+"@jamoatvaqtlaribot"
+msgstr ""
+"\n"
+"🕌 <b>{masjid} намоз вақтлари</b>\n"
+"📍 <b>Манзил:</b> {manzili1}, {manzili2}\n"
+"\n"
+"🕒 <i>Охирги марта {sana} да янгиланган.</i>\n"
+"\n"
+"<b>🏞 Бомдод:</b> Азон – {bomdod}\n"
+"\n"
+"<b>🌇 Пешин:</b> Азон – {peshin}\n"
+"\n"
+"<b>🌆 Аср:</b> Азон – {asr}\n"
+"\n"
+"<b>🌃 Шом:</b> Азон – {shom}\n"
+"\n"
+"<b>🌌 Хуфтон:</b> Азон – {hufton}\n"
+"\n"
+"@jamoatvaqtlaribot"
+
+#: handlers/user.py:403
 msgid ""
 "\n"
 "🕌 <b>{masjid} namoz vaqtlari</b>\n"
@@ -116,19 +149,15 @@ msgstr ""
 "\n"
 "@jamoatvaqtlaribot"
 
-#: handlers/user.py:483 handlers/user.py:494
+#: handlers/user.py:524 handlers/user.py:535
 msgid "✅ {district} {masjid} jamoat vaqtlariga obuna boʻldingiz."
 msgstr "✅ {district} {masjid} жамоат вақтларига обуна бўлдингиз."
 
-#: handlers/user.py:506 handlers/user.py:516
+#: handlers/user.py:547 handlers/user.py:557
 msgid "☑️ {district} {masjid} jamoat vaqtlariga obuna bekor qilindi."
 msgstr "☑️ {district} {masjid} жамоат вақтларига обуна бекор қилинди."
 
-#: handlers/user.py:542
-msgid "✅ Obunalar:"
-msgstr "✅ Обуналар:"
-
-#: handlers/user.py:554 handlers/user.py:585
+#: handlers/user.py:606 handlers/user.py:639
 msgid ""
 "Siz hech qaysi masjidga obuna boʻlmagansiz. Quyidagi tugma orqali obuna "
 "boʻlishingiz mumkin."
@@ -136,15 +165,15 @@ msgstr ""
 "Сиз ҳеч қайси масжидга обуна бўлмагансиз. Қуйидаги тугма орқали обуна "
 "бўлишингиз мумкин."
 
-#: handlers/user.py:560 keyboards/reply.py:11
+#: handlers/user.py:614 keyboards/reply.py:11
 msgid "📊 Statistika"
 msgstr "📊 Статистика"
 
-#: handlers/user.py:613
+#: handlers/user.py:668
 msgid "✅ Yozuvni tanlang:"
 msgstr "✅ Ёзувни танланг:"
 
-#: handlers/user.py:627
+#: handlers/user.py:682
 msgid ""
 "\n"
 "<b>Namoz vaqtlari\n"
@@ -174,8 +203,7 @@ msgstr ""
 "\n"
 "@jamoatvaqtlaribot\n"
 
-#: handlers/user.py:692 handlers/user.py:775
-#: handlers/user.py:826
+#: handlers/user.py:749 handlers/user.py:836 handlers/user.py:890
 msgid ""
 "📅 <i><b>{sana}</b>\n"
 "🕒 {tong} | {quyosh} | {peshin} | {asr} | {shom} | {xufton}</i>\n"
@@ -185,8 +213,7 @@ msgstr ""
 "🕒 {tong} | {quyosh} | {peshin} | {asr} | {shom} | {xufton}</i>\n"
 "\n"
 
-#: handlers/user.py:709 handlers/user.py:792
-#: handlers/user.py:843
+#: handlers/user.py:766 handlers/user.py:853 handlers/user.py:907
 msgid ""
 "<b>{year}-yil {month} oyi namoz vaqtlari\n"
 "Hudud: {mintaqa}</b>\n"
@@ -200,7 +227,7 @@ msgstr ""
 "Тонг | Қуёш | Пешин | Аср | Шом | Хуфтон\n"
 "\n"
 
-#: handlers/user.py:732
+#: handlers/user.py:790
 msgid ""
 "<b>{year}-yil {month} oyi namoz vaqtlari\n"
 "Hudud: {mintaqa}</b>\n"
@@ -212,7 +239,7 @@ msgstr ""
 "\n"
 "@jamoatvaqtlaribot"
 
-#: handlers/user.py:746 handlers/user.py:876
+#: handlers/user.py:805 handlers/user.py:941
 msgid "Hududni oʻzgartirish:"
 msgstr "Ҳудудни ўзгартириш:"
 
@@ -287,10 +314,4 @@ msgstr "🇺🇿 Ёзувни ўзгартириш"
 #: keyboards/reply.py:15
 msgid "Bosh menyu"
 msgstr "Бош меню"
-
-#~ msgid "🔄 Hudud: {mintaqa}"
-#~ msgstr "🔄 Ҳудуд: {mintaqa}"
-
-#~ msgid "Masjidni tanlang"
-#~ msgstr "Масжидни танланг"
 

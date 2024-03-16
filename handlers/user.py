@@ -617,13 +617,12 @@ async def statistika(message: Message, state: FSMContext):
         for masjid in subs:
             text += _(
                 """
-    🕌 <b>{masjid} statistikasi</b>
-    
-    Obunachilar soni: {subs_count} ta
-    {district} boʻyicha: {district_count}-oʻrin
-    {region} boʻyicha: {region_count}-oʻrin
-    Oʻzbekiston boʻyicha: {global_count}-oʻrin
-    """,
+🕌 <b>{masjid} statistikasi</b>
+
+Obunachilar soni: {subs_count} ta
+{district} boʻyicha: {district_count}-oʻrin
+{region} boʻyicha: {region_count}-oʻrin
+Oʻzbekiston boʻyicha: {global_count}-oʻrin""",
                 locale=data["locale"],
             ).format(
                 subs_count=masjid["masjid"]["subscription_count"],
