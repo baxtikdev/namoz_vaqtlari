@@ -1,6 +1,6 @@
 from aiogram.utils.keyboard import ReplyKeyboardBuilder
 from aiogram.types import KeyboardButton
-from tgbot.keyboards.factory import _
+from keyboards.factory import _
 
 def main_menu_user(lang) -> ReplyKeyboardBuilder:
     keyboard = ReplyKeyboardBuilder()

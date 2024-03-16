@@ -1,6 +1,6 @@
 import aiohttp
 
-from tgbot.data.config import BASE_URL
+from data.config import BASE_URL
 
 
 async def update_or_create_user(user_id, full_name, lang="uz"):

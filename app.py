@@ -6,13 +6,13 @@ from aiogram import Bot, Dispatcher
 from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram.fsm.storage.redis import RedisStorage, DefaultKeyBuilder
 
-from tgbot.handlers.admin import admin_router
-from tgbot.handlers.user import user_router
-from tgbot.config import load_config, Config
-from tgbot.middlewares.config import ConfigMiddleware
-from tgbot.services import broadcaster
+from handlers.admin import admin_router
+from handlers.user import user_router
+from config import load_config, Config
+from middlewares.config import ConfigMiddleware
+from services import broadcaster
 
-from tgbot.keyboards.factory import i18n
+from keyboards.factory import i18n
 from aiogram.utils.i18n.middleware import FSMI18nMiddleware
 
 

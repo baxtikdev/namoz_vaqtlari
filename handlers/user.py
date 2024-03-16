@@ -8,10 +8,10 @@ from aiogram.filters import CommandStart, Command
 from aiogram.fsm.context import FSMContext
 from aiogram.types import Message, CallbackQuery, ReplyKeyboardRemove, URLInputFile
 
-from tgbot.keyboards import factory, inline, reply
-from tgbot.keyboards.factory import _
-from tgbot.misc.states import UserStates
-from tgbot.services import api
+from keyboards import factory, inline, reply
+from keyboards.factory import _
+from misc.states import UserStates
+from services import api
 
 user_router = Router()
 lang_decode = {"uz": "name_uz", "de": "name_cyrl", "ru": "name_ru"}

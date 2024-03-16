@@ -1,7 +1,7 @@
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 from aiogram.types import InlineKeyboardButton, WebAppInfo
-from tgbot.keyboards import factory
-from tgbot.keyboards.factory import _
+from keyboards import factory
+from keyboards.factory import _
 
 lang_decode = {"uz": "name_uz", "de": "name_cyrl", "ru": "name_ru"}
 
