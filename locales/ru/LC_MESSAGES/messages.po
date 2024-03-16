@@ -1,0 +1,318 @@
+# Russian translations for PROJECT.
+# Copyright (C) 2023 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2024-02-20 17:41+0500\n"
+"PO-Revision-Date: 2023-12-04 14:40+0500\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ru\n"
+"Language-Team: ru <LL@li.org>\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.14.0\n"
+
+#: tgbot/handlers/user.py:121 tgbot/handlers/user.py:259
+#: tgbot/handlers/user.py:266
+msgid "🕌 Masjidni tanlang:"
+msgstr ""
+
+#: tgbot/handlers/user.py:121 tgbot/handlers/user.py:259
+#: tgbot/handlers/user.py:266
+msgid "Bu hudud masjidlari tez orada qoʻshiladi."
+msgstr ""
+
+#: tgbot/handlers/user.py:176 tgbot/handlers/user.py:202
+#: tgbot/handlers/user.py:527 tgbot/keyboards/inline.py:37
+#: tgbot/keyboards/inline.py:64 tgbot/keyboards/inline.py:117
+#: tgbot/keyboards/inline.py:157 tgbot/keyboards/inline.py:178
+#: tgbot/keyboards/inline.py:213 tgbot/keyboards/inline.py:225
+#: tgbot/keyboards/inline.py:237 tgbot/keyboards/inline.py:266
+msgid "🏡 Bosh menyu"
+msgstr ""
+
+#: tgbot/handlers/user.py:224 tgbot/handlers/user.py:467
+#: tgbot/handlers/user.py:603
+msgid "🏙 Hududni tanlang:"
+msgstr ""
+
+#: tgbot/handlers/user.py:237
+msgid "🏘 Tuman yoki shaharni tanlang:"
+msgstr ""
+
+#: tgbot/handlers/user.py:322 tgbot/handlers/user.py:564
+msgid ""
+"\n"
+"🕌 <b>{masjid} statistikasi</b>\n"
+"\n"
+"Obunachilar soni: {subs_count} ta\n"
+"{district} boʻyicha: {district_count}-oʻrin\n"
+"{region} boʻyicha: {region_count}-oʻrin\n"
+"Oʻzbekiston boʻyicha: {global_count}-oʻrin\n"
+msgstr ""
+
+#: tgbot/handlers/user.py:345
+msgid "Ma'lumotlar topilmadi"
+msgstr ""
+
+#: tgbot/handlers/user.py:366
+msgid ""
+"\n"
+"🕌 <b>{masjid} namoz vaqtlari</b>\n"
+"📍 <b>Manzil:</b> {manzili1}, {manzili2}\n"
+"\n"
+"🕒 <i>Oxirgi marta {sana} da yangilangan.</i>\n"
+"\n"
+"<b>🏞 Bomdod:</b>\n"
+"Azon – {bomdod} | Takbir – {bomdod2}\n"
+"\n"
+"<b>🌇 Peshin:</b>\n"
+"Azon – {peshin} | Takbir – {peshin2}\n"
+"\n"
+"<b>🌆 Asr:</b>\n"
+"Azon – {asr} | Takbir – {asr2}\n"
+"\n"
+"<b>🌃 Shom:</b>\n"
+"Azon – {shom} | Takbir – {shom2}\n"
+"\n"
+"<b>🌌 Xufton:</b>\n"
+"Azon – {hufton} | Takbir – {hufton2}\n"
+"\n"
+"@jamoatvaqtlaribot"
+msgstr ""
+
+#: tgbot/handlers/user.py:483 tgbot/handlers/user.py:494
+msgid "✅ {district} {masjid} jamoat vaqtlariga obuna boʻldingiz."
+msgstr ""
+
+#: tgbot/handlers/user.py:506 tgbot/handlers/user.py:516
+msgid "☑️ {district} {masjid} jamoat vaqtlariga obuna bekor qilindi."
+msgstr ""
+
+#: tgbot/handlers/user.py:542
+msgid "✅ Obunalar:"
+msgstr ""
+
+#: tgbot/handlers/user.py:554 tgbot/handlers/user.py:585
+msgid ""
+"Siz hech qaysi masjidga obuna boʻlmagansiz. Quyidagi tugma orqali obuna "
+"boʻlishingiz mumkin."
+msgstr ""
+
+#: tgbot/handlers/user.py:560 tgbot/keyboards/reply.py:11
+msgid "📊 Statistika"
+msgstr ""
+
+#: tgbot/handlers/user.py:613
+msgid "✅ Yozuvni tanlang:"
+msgstr ""
+
+#: tgbot/handlers/user.py:627
+msgid ""
+"\n"
+"<b>Namoz vaqtlari\n"
+"Hudud: {hudud}\n"
+"{sana}</b>\n"
+"\n"
+"<i>🏙 Tong: <b>{tong}</b> (saharlik tugashi) \n"
+"🌅 Quyosh: <b>{quyosh}</b>\n"
+"🏞 Peshin: <b>{peshin}</b>\n"
+"🌇 Asr: <b>{asr}</b>\n"
+"🌆 Shom: <b>{shom}</b> (iftorlik boshlanishi)\n"
+"🌌 Xufton: <b>{xufton}</b></i>\n"
+"\n"
+"@jamoatvaqtlaribot\n"
+msgstr ""
+
+#: tgbot/handlers/user.py:692 tgbot/handlers/user.py:775
+#: tgbot/handlers/user.py:826
+msgid ""
+"📅 <i><b>{sana}</b>\n"
+"🕒 {tong} | {quyosh} | {peshin} | {asr} | {shom} | {xufton}</i>\n"
+"\n"
+msgstr ""
+
+#: tgbot/handlers/user.py:709 tgbot/handlers/user.py:792
+#: tgbot/handlers/user.py:843
+msgid ""
+"<b>{year}-yil {month} oyi namoz vaqtlari\n"
+"Hudud: {mintaqa}</b>\n"
+"\n"
+"Tong | Quyosh | Peshin | Asr | Shom | Xufton\n"
+"\n"
+msgstr ""
+
+#: tgbot/handlers/user.py:732
+msgid ""
+"<b>{year}-yil {month} oyi namoz vaqtlari\n"
+"Hudud: {mintaqa}</b>\n"
+"\n"
+"@jamoatvaqtlaribot"
+msgstr ""
+
+#: tgbot/handlers/user.py:746 tgbot/handlers/user.py:876
+msgid "Hududni oʻzgartirish:"
+msgstr ""
+
+#: tgbot/keyboards/inline.py:59
+msgid "🏙 Hududni oʻzgartirish"
+msgstr ""
+
+#: tgbot/keyboards/inline.py:89 tgbot/keyboards/inline.py:188
+msgid "{icon} Orqaga"
+msgstr ""
+
+#: tgbot/keyboards/inline.py:101 tgbot/keyboards/inline.py:198
+msgid "{icon} Keyingi"
+msgstr ""
+
+#: tgbot/keyboards/inline.py:112
+msgid "🏘 Tumanni oʻzgartirish"
+msgstr ""
+
+#: tgbot/keyboards/inline.py:129
+msgid "✅ Obuna boʻlish"
+msgstr ""
+
+#: tgbot/keyboards/inline.py:135
+msgid "❌ Obunani bekor qilish"
+msgstr ""
+
+#: tgbot/keyboards/inline.py:144
+msgid "🗺 Xaritada koʻrish"
+msgstr ""
+
+#: tgbot/keyboards/inline.py:152 tgbot/keyboards/inline.py:261
+msgid "🕌 Boshqa masjidni tanlash"
+msgstr ""
+
+#: tgbot/keyboards/inline.py:168
+msgid "📅 Oylik namoz vaqtlari"
+msgstr ""
+
+#: tgbot/keyboards/inline.py:172
+msgid "🔄 Hududni oʻzgartirish"
+msgstr ""
+
+#: tgbot/keyboards/inline.py:208
+msgid "📑 PDF shaklda yuklash"
+msgstr ""
+
+#: tgbot/keyboards/inline.py:247 tgbot/keyboards/inline.py:275
+msgid "🕌 Masjidga obuna boʻlish"
+msgstr ""
+
+#: tgbot/keyboards/inline.py:252
+msgid "Masjid statistikasini koʻrish"
+msgstr ""
+
+#: tgbot/keyboards/reply.py:8
+msgid "🕌 Jamoat vaqtlari"
+msgstr ""
+
+#: tgbot/keyboards/reply.py:9
+msgid "🕰 Namoz vaqtlari"
+msgstr ""
+
+#: tgbot/keyboards/reply.py:10
+msgid "✅ Obunalar"
+msgstr ""
+
+#: tgbot/keyboards/reply.py:12
+msgid "🇺🇿 Yozuvni oʻzgartirish"
+msgstr ""
+
+#: tgbot/keyboards/reply.py:15
+msgid "Bosh menyu"
+msgstr ""
+
+#~ msgid ""
+#~ "<b>{year}-yil {month} oyi namoz vaqtlari\n"
+#~ "Hudud: {mintaqa}</b>\n"
+#~ "\n"
+#~ "Tong | Quyosh | Peshin |  Asr |  Shom | Xufton\n"
+#~ "\n"
+#~ msgstr ""
+
+#~ msgid "🏘 Tumanni tanlang:"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "\n"
+#~ "🕌 <b>{masjid} jamoat namozi vaqtlari</b>\n"
+#~ "📍 <b>Manzili:</b> {manzili1}, {manzili2}\n"
+#~ "\n"
+#~ "🕒 <i>Oxirgi marta {sana} da yangilangan</i>\n"
+#~ "\n"
+#~ "🏞 Bomdod: <b>{bomdod}</b>\n"
+#~ "🌇 Peshin: <b>{peshin}</b>\n"
+#~ "🌆 Asr: <b>{asr}</b>\n"
+#~ "🌃 Shom: <b>{shom}</b>\n"
+#~ "🌌 Xufton: <b>{hufton}</b>\n"
+#~ "\n"
+#~ "@jamoatvaqtlaribot"
+#~ msgstr ""
+
+#~ msgid "✅ {district} {masjid} masjidi jamoat vaqtlariga obuna boʻldingiz"
+#~ msgstr ""
+
+#~ msgid "☑️ {district} {masjid} masjidi jamoat vaqtlariga obuna bekor qilindi"
+#~ msgstr ""
+
+#~ msgid "🔄 Hudud: {mintaqa}"
+#~ msgstr ""
+
+#~ msgid "Masjidni tanlang"
+#~ msgstr ""
+
+#~ msgid "Boshqa masjid statistikasini koʻrish"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "\n"
+#~ "🕌 <b>{masjid} jamoat namozi vaqtlari</b>\n"
+#~ "📍 <b>Manzili:</b> {manzili1}, {manzili2}\n"
+#~ "\n"
+#~ "🕒 <i>Oxirgi marta {sana} da yangilangan.</i>\n"
+#~ "\n"
+#~ "🏞 Bomdod: <b>{bomdod}</b>\n"
+#~ "🌇 Peshin: <b>{peshin}</b>\n"
+#~ "🌆 Asr: <b>{asr}</b>\n"
+#~ "🌃 Shom: <b>{shom}</b>\n"
+#~ "🌌 Xufton: <b>{hufton}</b>\n"
+#~ "\n"
+#~ "@jamoatvaqtlaribot"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "\n"
+#~ "🕌 <b>{masjid} namoz vaqtlari</b>\n"
+#~ "📍 <b>Manzili:</b> {manzili1}, {manzili2}\n"
+#~ "\n"
+#~ "🕒 <i>Oxirgi marta {sana} da yangilangan.</i>\n"
+#~ "\n"
+#~ "<b>🏞 Bomdod:</b>\n"
+#~ "Azon – {bomdod} | Takbir – {bomdod2}\n"
+#~ "\n"
+#~ "<b>🌇 Peshin:</b>\n"
+#~ "Azon – {peshin} | Takbir – {peshin2}\n"
+#~ "\n"
+#~ "<b>🌆 Asr:</b>\n"
+#~ "Azon – {asr} | Takbir – {asr2}\n"
+#~ "\n"
+#~ "<b>🌃 Shom:</b>\n"
+#~ "Azon – {shom} | Takbir – {shom2}\n"
+#~ "\n"
+#~ "<b>🌌 Xufton:</b>\n"
+#~ "Azon – {hufton} | Takbir – {hufton2}\n"
+#~ "\n"
+#~ "@jamoatvaqtlaribot"
+#~ msgstr ""
+
