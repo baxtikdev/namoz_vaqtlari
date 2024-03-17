@@ -323,28 +323,44 @@ async def masjid_info(
             masjid_id=callback_data.masjid,
         )
         if resp["success"]:
-            await callback_query.message.edit_text(
-                _(
+            if data["locale"] == "uz":
+                await callback_query.message.edit_text(
                     """
 🕌 <b>{masjid} statistikasi</b>
 
 Obunachilar soni: {subs_count} ta
 {district} boʻyicha: {district_count}-oʻrin
 {region} boʻyicha: {region_count}-oʻrin
-Oʻzbekiston boʻyicha: {global_count}-oʻrin
-""",
-                    locale=data["locale"],
-                ).format(
-                    masjid=resp[lang_decode[data["locale"]]],
-                    district=resp["district"][lang_decode[data["locale"]]],
-                    district_count=resp["statistic"]["district_position"],
-                    region=resp["district"]["region"][lang_decode[data["locale"]]],
-                    region_count=resp["statistic"]["region_position"],
-                    global_count=resp["statistic"]["all_position"],
-                    subs_count=resp["subscription_count"],
-                ),
-                reply_markup=inline.stats_main_menu_inline(data["locale"]),
-            )
+Oʻzbekiston boʻyicha: {global_count}-oʻrin""".format(
+                        masjid=resp[lang_decode[data["locale"]]],
+                        district=resp["district"][lang_decode[data["locale"]]],
+                        district_count=resp["statistic"]["district_position"],
+                        region=resp["district"]["region"][lang_decode[data["locale"]]],
+                        region_count=resp["statistic"]["region_position"],
+                        global_count=resp["statistic"]["all_position"],
+                        subs_count=resp["subscription_count"],
+                    ),
+                    reply_markup=inline.stats_main_menu_inline(data["locale"]),
+                )
+            else:
+                await callback_query.message.edit_text(
+                    """
+🕌 <b>{masjid} статистикаси</b>
+
+Обуначилар сони: {subs_count} та
+{district} бўйича: {district_count}-ўрин
+{region} бўйича: {region_count}-ўрин
+Ўзбекистон бўйича: {global_count}-ўрин""".format(
+                        masjid=resp[lang_decode[data["locale"]]],
+                        district=resp["district"][lang_decode[data["locale"]]],
+                        district_count=resp["statistic"]["district_position"],
+                        region=resp["district"]["region"][lang_decode[data["locale"]]],
+                        region_count=resp["statistic"]["region_position"],
+                        global_count=resp["statistic"]["all_position"],
+                        subs_count=resp["subscription_count"],
+                    ),
+                    reply_markup=inline.stats_main_menu_inline(data["locale"]),
+                )
         else:
             await callback_query.message.edit_text(
                 _("Ma'lumotlar topilmadi", locale=data["locale"]),
@@ -352,7 +368,7 @@ Oʻzbekiston boʻyicha: {global_count}-oʻrin
             )
     elif data.get("masjid_action", False) == "subscription":
         masjid = await api.masjid_info(callback_data.masjid, user_id=callback_query.from_user.id)
-        masjid_date = datetime.strptime(masjid["last_update"], "%Y-%m-%dT%H:%M:%S.%fZ")
+        masjid_date = datetime.strptime(masjid["date"], "%Y-%m-%dT%H:%M:%SZ")
         # Specify the UTC timezone
         utc_timezone = pytz.utc
 
@@ -386,7 +402,7 @@ Oʻzbekiston boʻyicha: {global_count}-oʻrin
 
 <b>🌌 Xufton:</b> Azon – {hufton}
 
-@jamoatvaqtlaribot""",
+@jamoatvaqtibot""",
                 locale=data["locale"],
             ).format(
                 sana=sana,
@@ -422,7 +438,7 @@ Azon – {shom} | Takbir – {shom2}
 <b>🌌 Xufton:</b>
 Azon – {hufton} | Takbir – {hufton2}
 
-@jamoatvaqtlaribot""",
+@jamoatvaqtibot""",
                 locale=data["locale"],
             ).format(
                 sana=sana,
@@ -615,25 +631,39 @@ async def statistika(message: Message, state: FSMContext):
     text = ""
     if subs:
         for masjid in subs:
-            text += _(
-                """
+            if data["locale"] == 'uz':
+                text += """
 🕌 <b>{masjid} statistikasi</b>
 
 Obunachilar soni: {subs_count} ta
 {district} boʻyicha: {district_count}-oʻrin
 {region} boʻyicha: {region_count}-oʻrin
-Oʻzbekiston boʻyicha: {global_count}-oʻrin""",
-                locale=data["locale"],
-            ).format(
-                subs_count=masjid["masjid"]["subscription_count"],
-                masjid=masjid["masjid"][lang_decode[data["locale"]]],
-                district=masjid["masjid"]["district"][lang_decode[data["locale"]]],
-                district_count=masjid["masjid"]["statistic"]["district_position"],
-                region=masjid["masjid"]["district"]["region"][lang_decode[data["locale"]]],
-                region_count=masjid["masjid"]["statistic"]["region_position"],
-                global_count=masjid["masjid"]["statistic"]["all_position"],
-            )
-        sub_enable = False
+Oʻzbekiston boʻyicha: {global_count}-oʻrin""".format(
+                    subs_count=masjid["masjid"]["subscription_count"],
+                    masjid=masjid["masjid"][lang_decode[data["locale"]]],
+                    district=masjid["masjid"]["district"][lang_decode[data["locale"]]],
+                    district_count=masjid["masjid"]["statistic"]["district_position"],
+                    region=masjid["masjid"]["district"]["region"][lang_decode[data["locale"]]],
+                    region_count=masjid["masjid"]["statistic"]["region_position"],
+                    global_count=masjid["masjid"]["statistic"]["all_position"],
+                )
+            else:
+                text += """
+🕌 <b>{masjid} статистикаси</b>
+
+Обуначилар сони: {subs_count} та
+{district} бўйича: {district_count}-ўрин
+{region} бўйича: {region_count}-ўрин
+Ўзбекистон бўйича: {global_count}-ўрин""".format(
+                    subs_count=masjid["masjid"]["subscription_count"],
+                    masjid=masjid["masjid"][lang_decode[data["locale"]]],
+                    district=masjid["masjid"]["district"][lang_decode[data["locale"]]],
+                    district_count=masjid["masjid"]["statistic"]["district_position"],
+                    region=masjid["masjid"]["district"]["region"][lang_decode[data["locale"]]],
+                    region_count=masjid["masjid"]["statistic"]["region_position"],
+                    global_count=masjid["masjid"]["statistic"]["all_position"],
+                )
+            sub_enable = False
     else:
         text = _("Siz hech qaysi masjidga obuna boʻlmagansiz. Quyidagi tugma orqali obuna boʻlishingiz mumkin.",
                  locale=data["locale"])
@@ -691,7 +721,7 @@ Hudud: {hudud}
 🌆 Shom: <b>{shom}</b> (iftorlik boshlanishi)
 🌌 Xufton: <b>{xufton}</b></i>
 
-@jamoatvaqtlaribot
+@jamoatvaqtibot
 """,
         locale=data["locale"],
     ).format(
@@ -770,7 +800,7 @@ Tong | Quyosh | Peshin | Asr | Shom | Xufton\n\n""",
                 locale=data["locale"],
             ).format(year=current_time.year, mintaqa=mintaqatext,
                      month=months[data["locale"]][current_time.month].lower())
-            + "".join(dates) + "@jamoatvaqtlaribot",
+            + "".join(dates) + "@jamoatvaqtibot",
             reply_markup=inline.oylik_namoz_vaqtlari_inline(
                 mintaqa=callback_data.mintaqa,
                 current_page=page,
@@ -787,7 +817,7 @@ Tong | Quyosh | Peshin | Asr | Shom | Xufton\n\n""",
         resp = await api.get_mintaqa_info(callback_data.mintaqa)
         mintaqa_text = resp[lang_decode[data['locale']]]
         text = _(
-            """<b>{year}-yil {month} oyi namoz vaqtlari\nHudud: {mintaqa}</b>\n\n@jamoatvaqtlaribot"""
+            """<b>{year}-yil {month} oyi namoz vaqtlari\nHudud: {mintaqa}</b>\n\n@jamoatvaqtibot"""
         ).format(
             year=current_time.year,
             mintaqa=mintaqa_text,
@@ -857,7 +887,7 @@ Tong | Quyosh | Peshin | Asr | Shom | Xufton\n\n""",
                 locale=data["locale"],
             ).format(year=current_time.year, mintaqa=mintaqatext,
                      month=months[data["locale"]][current_time.month].lower())
-            + "".join(dates) + "@jamoatvaqtlaribot",
+            + "".join(dates) + "@jamoatvaqtibot",
             reply_markup=inline.oylik_namoz_vaqtlari_inline(
                 mintaqa=data["current_mintaqa"],
                 current_page=page,
@@ -911,7 +941,7 @@ Tong | Quyosh | Peshin | Asr | Shom | Xufton\n\n""",
                 locale=data["locale"],
             ).format(year=current_time.year, mintaqa=mintaqatext,
                      month=months[data["locale"]][current_time.month].lower())
-            + "".join(dates) + "@jamoatvaqtlaribot",
+            + "".join(dates) + "@jamoatvaqtibot",
             reply_markup=inline.oylik_namoz_vaqtlari_inline(
                 mintaqa=data["current_mintaqa"],
                 current_page=page,
