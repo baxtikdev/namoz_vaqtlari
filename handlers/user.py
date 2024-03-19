@@ -390,22 +390,22 @@ Oʻzbekiston boʻyicha: {global_count}-oʻrin""".format(
                 isShown = True
                 text = _(
                     """
-    🕌 <b>{masjid} namoz vaqtlari</b>
-    📍 <b>Manzil:</b> {manzili1}, {manzili2}
-    
-    🕒 <i>Oxirgi marta {sana} da yangilangan.</i>
-    
-    <b>🏞 Bomdod:</b> Azon – {bomdod}
-    
-    <b>🌇 Peshin:</b> Azon – {peshin}
-    
-    <b>🌆 Asr:</b> Azon – {asr}
-    
-    <b>🌃 Shom:</b> Azon – {shom}
-    
-    <b>🌌 Xufton:</b> Azon – {hufton}
-    
-    @jamoatvaqtibot""",
+🕌 <b>{masjid} namoz vaqtlari</b>
+📍 <b>Manzil:</b> {manzili1}, {manzili2}
+
+🕒 <i>Oxirgi marta {sana} da yangilangan.</i>
+
+<b>🏞 Bomdod:</b> Azon – {bomdod}
+
+<b>🌇 Peshin:</b> Azon – {peshin}
+
+<b>🌆 Asr:</b> Azon – {asr}
+
+<b>🌃 Shom:</b> Azon – {shom}
+
+<b>🌌 Xufton:</b> Azon – {hufton}
+
+@jamoatvaqtibot""",
                     locale=data["locale"],
                 ).format(
                     sana=sana,
@@ -422,27 +422,27 @@ Oʻzbekiston boʻyicha: {global_count}-oʻrin""".format(
                 isShown = True
                 text = _(
                     """
-    🕌 <b>{masjid} namoz vaqtlari</b>
-    📍 <b>Manzil:</b> {manzili1}, {manzili2}
-    
-    🕒 <i>Oxirgi marta {sana} da yangilangan.</i>
-    
-    <b>🏞 Bomdod:</b>
-    Azon – {bomdod} | Takbir – {bomdod2}
-    
-    <b>🌇 Peshin:</b>
-    Azon – {peshin} | Takbir – {peshin2}
-    
-    <b>🌆 Asr:</b>
-    Azon – {asr} | Takbir – {asr2}
-    
-    <b>🌃 Shom:</b>
-    Azon – {shom} | Takbir – {shom2}
-    
-    <b>🌌 Xufton:</b>
-    Azon – {hufton} | Takbir – {hufton2}
-    
-    @jamoatvaqtibot""",
+🕌 <b>{masjid} namoz vaqtlari</b>
+📍 <b>Manzil:</b> {manzili1}, {manzili2}
+
+🕒 <i>Oxirgi marta {sana} da yangilangan.</i>
+
+<b>🏞 Bomdod:</b>
+Azon – {bomdod} | Takbir – {bomdod2}
+
+<b>🌇 Peshin:</b>
+Azon – {peshin} | Takbir – {peshin2}
+
+<b>🌆 Asr:</b>
+Azon – {asr} | Takbir – {asr2}
+
+<b>🌃 Shom:</b>
+Azon – {shom} | Takbir – {shom2}
+
+<b>🌌 Xufton:</b>
+Azon – {hufton} | Takbir – {hufton2}
+
+@jamoatvaqtibot""",
                     locale=data["locale"],
                 ).format(
                     sana=sana,
@@ -460,11 +460,9 @@ Oʻzbekiston boʻyicha: {global_count}-oʻrin""".format(
                     shom2=masjid['takbir']['shom'],
                     hufton2=masjid['takbir']['hufton']
                 )
-
         except:
             if data['locale'] == 'uz' and not isShown:
                 await callback_query.answer(text="Namoz vaqtlari qo'shilmagan❗️", show_alert=False)
-
             elif not isShown:
                 await callback_query.answer(text="Намоз вақтлари қўшилмаган❗️", show_alert=False)
 
