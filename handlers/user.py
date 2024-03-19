@@ -463,10 +463,10 @@ Oʻzbekiston boʻyicha: {global_count}-oʻrin""".format(
 
         except:
             if data['locale'] == 'uz' and not isShown:
-                await callback_query.answer(text="Namoz vaqtlari qo'shilmagan", show_alert=False)
+                await callback_query.answer(text="Namoz vaqtlari qo'shilmagan❗️", show_alert=False)
 
             elif not isShown:
-                await callback_query.answer(text="Намоз вақтлари қўшилмаган", show_alert=False)
+                await callback_query.answer(text="Намоз вақтлари қўшилмаган❗️", show_alert=False)
 
         markup = inline.masjid_kb(masjid, lang=data["locale"], is_subscribed=masjid["is_subscribed"],
                                   is_subs_menu=callback_data.is_sub)
