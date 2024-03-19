@@ -368,94 +368,105 @@ Oʻzbekiston boʻyicha: {global_count}-oʻrin""".format(
             )
     elif data.get("masjid_action", False) == "subscription":
         masjid = await api.masjid_info(callback_data.masjid, user_id=callback_query.from_user.id)
-        masjid_date = datetime.strptime(masjid["date"], "%Y-%m-%dT%H:%M:%SZ")
-        # Specify the UTC timezone
-        utc_timezone = pytz.utc
+        isShown = False
+        try:
+            masjid_date = datetime.strptime(masjid["date"], "%Y-%m-%dT%H:%M:%SZ")
+            # Specify the UTC timezone
+            utc_timezone = pytz.utc
 
-        # Convert the datetime to the UTC timezone
-        formatted_datetime_utc = utc_timezone.localize(masjid_date)
+            # Convert the datetime to the UTC timezone
+            formatted_datetime_utc = utc_timezone.localize(masjid_date)
 
-        # Specify the target timezone ("Asia/Tashkent")
-        target_timezone = pytz.timezone("Asia/Tashkent")
+            # Specify the target timezone ("Asia/Tashkent")
+            target_timezone = pytz.timezone("Asia/Tashkent")
 
-        # Convert the datetime to the target timezone
-        masjid_date_tashkent = formatted_datetime_utc.astimezone(target_timezone)
+            # Convert the datetime to the target timezone
+            masjid_date_tashkent = formatted_datetime_utc.astimezone(target_timezone)
 
-        day = masjid_date_tashkent.day
-        month = months[data['locale']][masjid_date_tashkent.month].lower()
-        sana = f"""{day}{'-' if data['locale'] == 'uz' else ' '}{month} {masjid_date_tashkent.strftime("%H:%M")}"""
-        if not masjid.get('takbir'):
-            text = _(
-                """
-🕌 <b>{masjid} namoz vaqtlari</b>
-📍 <b>Manzil:</b> {manzili1}, {manzili2}
+            day = masjid_date_tashkent.day
+            month = months[data['locale']][masjid_date_tashkent.month].lower()
+            sana = f"""{day}{'-' if data['locale'] == 'uz' else ' '}{month} {masjid_date_tashkent.strftime("%H:%M")}"""
+            if not masjid.get('takbir'):
+                isShown = True
+                text = _(
+                    """
+    🕌 <b>{masjid} namoz vaqtlari</b>
+    📍 <b>Manzil:</b> {manzili1}, {manzili2}
+    
+    🕒 <i>Oxirgi marta {sana} da yangilangan.</i>
+    
+    <b>🏞 Bomdod:</b> Azon – {bomdod}
+    
+    <b>🌇 Peshin:</b> Azon – {peshin}
+    
+    <b>🌆 Asr:</b> Azon – {asr}
+    
+    <b>🌃 Shom:</b> Azon – {shom}
+    
+    <b>🌌 Xufton:</b> Azon – {hufton}
+    
+    @jamoatvaqtibot""",
+                    locale=data["locale"],
+                ).format(
+                    sana=sana,
+                    masjid=masjid[lang_decode[data["locale"]]],
+                    manzili1=masjid["district"]["region"][lang_decode[data["locale"]]],
+                    manzili2=masjid["district"][lang_decode[data["locale"]]],
+                    bomdod=masjid["bomdod"],
+                    peshin=masjid["peshin"],
+                    asr=masjid["asr"],
+                    shom=masjid["shom"],
+                    hufton=masjid["hufton"]
+                )
+            else:
+                isShown = True
+                text = _(
+                    """
+    🕌 <b>{masjid} namoz vaqtlari</b>
+    📍 <b>Manzil:</b> {manzili1}, {manzili2}
+    
+    🕒 <i>Oxirgi marta {sana} da yangilangan.</i>
+    
+    <b>🏞 Bomdod:</b>
+    Azon – {bomdod} | Takbir – {bomdod2}
+    
+    <b>🌇 Peshin:</b>
+    Azon – {peshin} | Takbir – {peshin2}
+    
+    <b>🌆 Asr:</b>
+    Azon – {asr} | Takbir – {asr2}
+    
+    <b>🌃 Shom:</b>
+    Azon – {shom} | Takbir – {shom2}
+    
+    <b>🌌 Xufton:</b>
+    Azon – {hufton} | Takbir – {hufton2}
+    
+    @jamoatvaqtibot""",
+                    locale=data["locale"],
+                ).format(
+                    sana=sana,
+                    masjid=masjid[lang_decode[data["locale"]]],
+                    manzili1=masjid["district"]["region"][lang_decode[data["locale"]]],
+                    manzili2=masjid["district"][lang_decode[data["locale"]]],
+                    bomdod=masjid["bomdod"],
+                    peshin=masjid["peshin"],
+                    asr=masjid["asr"],
+                    shom=masjid["shom"],
+                    hufton=masjid["hufton"],
+                    bomdod2=masjid['takbir']['bomdod'],
+                    peshin2=masjid['takbir']['peshin'],
+                    asr2=masjid['takbir']['asr'],
+                    shom2=masjid['takbir']['shom'],
+                    hufton2=masjid['takbir']['hufton']
+                )
 
-🕒 <i>Oxirgi marta {sana} da yangilangan.</i>
+        except:
+            if data['locale'] == 'uz' and not isShown:
+                await callback_query.answer(text="Namoz vaqtlari qo'shilmagan", show_alert=False)
 
-<b>🏞 Bomdod:</b> Azon – {bomdod}
-
-<b>🌇 Peshin:</b> Azon – {peshin}
-
-<b>🌆 Asr:</b> Azon – {asr}
-
-<b>🌃 Shom:</b> Azon – {shom}
-
-<b>🌌 Xufton:</b> Azon – {hufton}
-
-@jamoatvaqtibot""",
-                locale=data["locale"],
-            ).format(
-                sana=sana,
-                masjid=masjid[lang_decode[data["locale"]]],
-                manzili1=masjid["district"]["region"][lang_decode[data["locale"]]],
-                manzili2=masjid["district"][lang_decode[data["locale"]]],
-                bomdod=masjid["bomdod"],
-                peshin=masjid["peshin"],
-                asr=masjid["asr"],
-                shom=masjid["shom"],
-                hufton=masjid["hufton"]
-            )
-        else:
-            text = _(
-                """
-🕌 <b>{masjid} namoz vaqtlari</b>
-📍 <b>Manzil:</b> {manzili1}, {manzili2}
-
-🕒 <i>Oxirgi marta {sana} da yangilangan.</i>
-
-<b>🏞 Bomdod:</b>
-Azon – {bomdod} | Takbir – {bomdod2}
-
-<b>🌇 Peshin:</b>
-Azon – {peshin} | Takbir – {peshin2}
-
-<b>🌆 Asr:</b>
-Azon – {asr} | Takbir – {asr2}
-
-<b>🌃 Shom:</b>
-Azon – {shom} | Takbir – {shom2}
-
-<b>🌌 Xufton:</b>
-Azon – {hufton} | Takbir – {hufton2}
-
-@jamoatvaqtibot""",
-                locale=data["locale"],
-            ).format(
-                sana=sana,
-                masjid=masjid[lang_decode[data["locale"]]],
-                manzili1=masjid["district"]["region"][lang_decode[data["locale"]]],
-                manzili2=masjid["district"][lang_decode[data["locale"]]],
-                bomdod=masjid["bomdod"],
-                peshin=masjid["peshin"],
-                asr=masjid["asr"],
-                shom=masjid["shom"],
-                hufton=masjid["hufton"],
-                bomdod2=masjid['takbir']['bomdod'],
-                peshin2=masjid['takbir']['peshin'],
-                asr2=masjid['takbir']['asr'],
-                shom2=masjid['takbir']['shom'],
-                hufton2=masjid['takbir']['hufton']
-            )
+            elif not isShown:
+                await callback_query.answer(text="Намоз вақтлари қўшилмаган", show_alert=False)
 
         markup = inline.masjid_kb(masjid, lang=data["locale"], is_subscribed=masjid["is_subscribed"],
                                   is_subs_menu=callback_data.is_sub)
