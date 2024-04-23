@@ -89,7 +89,8 @@ async def get_today_namoz_vaqti(mintaqa, milodiy_oy, milodiy_kun):
         async with session.get(
                 f"{BASE_URL}/api/bugungi-namoz-vaqti", params=payload
         ) as response:
-            return await response.json()
+            data = await response.json()
+            return data
 
 
 async def get_namoz_vaqtlari(mintaqa, milodiy_oy, page=1):
