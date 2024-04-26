@@ -8,6 +8,7 @@ from aiogram.filters import CommandStart, Command
 from aiogram.fsm.context import FSMContext
 from aiogram.types import Message, CallbackQuery, ReplyKeyboardRemove, URLInputFile
 
+from handlers.translation import NOT_FOUND_NAMOZ_VAQTI, NOT_FOUND_DISTRICT
 from keyboards import factory, inline, reply
 from keyboards.factory import _
 from misc.states import UserStates
@@ -158,9 +159,9 @@ async def restore_defaults(state):
     newdata = {
         'locale': data.get('locale', 'uz'),
         'registered': data.get('registered', False),
-        'mintaqa': data.get('current_district', 1),
-        'district': data.get('current_district', 1),
-        'region': data.get('current_region', 1),
+        # 'mintaqa': data.get('current_district', 1),
+        # 'district': data.get('current_district', 1),
+        # 'region': data.get('current_region', 1),
 
     }
     await state.set_data(newdata)
@@ -712,7 +713,14 @@ async def change_lang(message: Message, state: FSMContext):
 async def namoz_vaqti(message: Message, state: FSMContext):
     data = await state.get_data()
     print("DATA", data)
-    mintaqa = data.get("mintaqa", 1)
+    mintaqa = data.get("mintaqa")
+    if mintaqa is None:
+        await message.answer(
+            NOT_FOUND_DISTRICT[data["locale"]],
+            reply_markup=inline.mintaqa_viloyat_inline(
+                viloyatlar[data["locale"]], data["locale"]
+            ),
+        )
     currint_time = datetime.now()
     d = await api.get_today_namoz_vaqti(
         mintaqa=mintaqa, milodiy_oy=currint_time.month, milodiy_kun=currint_time.day
@@ -720,7 +728,7 @@ async def namoz_vaqti(message: Message, state: FSMContext):
     print(d)
     language = data.get('locale', 'uz')
     if not d:
-        await message.answer("Namoz vaqti topilmadi", reply_markup=reply.main_menu_user(language))
+        await message.answer(NOT_FOUND_NAMOZ_VAQTI[data["locale"]], reply_markup=reply.main_menu_user(language))
         return
     date_obj = datetime.strptime(d['date'], "%Y-%m-%dT%H:%M:%S%z")
 

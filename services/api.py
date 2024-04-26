@@ -97,7 +97,7 @@ async def get_namoz_vaqtlari(mintaqa, milodiy_oy, page=1):
     payload = {"mintaqa": mintaqa, "oy": milodiy_oy, "page": page}
     async with aiohttp.ClientSession() as session:
         async with session.get(
-                f"{BASE_URL}/api/namoz-vaqtlari", params=payload
+                f"{BASE_URL}/api/namoz-vaqtlari/", params=payload
         ) as response:
             return await response.json()
 
