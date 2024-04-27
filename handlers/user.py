@@ -8,7 +8,8 @@ from aiogram.filters import CommandStart, Command
 from aiogram.fsm.context import FSMContext
 from aiogram.types import Message, CallbackQuery, ReplyKeyboardRemove, URLInputFile
 
-from handlers.translation import NOT_FOUND_NAMOZ_VAQTI, NOT_FOUND_DISTRICT
+from handlers.translation import NOT_FOUND_NAMOZ_VAQTI, NOT_FOUND_DISTRICT, LOCATION_MESSAGE, MAIN_MENU, CLOSEST_MASJID, \
+    NOT_FOUND_CLOSEST_MASJID
 from keyboards import factory, inline, reply
 from keyboards.factory import _
 from misc.states import UserStates
@@ -238,6 +239,39 @@ async def jamoat(message: Message, state: FSMContext):
     await t.delete()
 
 
+@user_router.message(
+    F.text.in_(["📍 Енг яқин масжидлар", "📍 Eng yaqin masjidlar"]), UserStates.menu
+)
+async def the_closest_masjids(message: Message, state: FSMContext):
+    data = await state.get_data()
+    await message.answer(LOCATION_MESSAGE[data["locale"]], reply_markup=reply.locationBtn(data["locale"]))
+    await state.set_state(UserStates.location)
+
+
+@user_router.message(UserStates.location)
+async def receive_location(message: Message, state: FSMContext):
+    data = await state.get_data()
+    if message.text in ["◀️ Ortga", "◀️ Ортга"]:
+        await state.set_state(UserStates.menu)
+        await message.answer(MAIN_MENU[data["locale"]],
+                             reply_markup=reply.main_menu_user(data["locale"]))
+        return
+    if message.location:
+        masjids = await api.get_closest_masjids(message.location.latitude, message.location.longitude)
+        if masjids:
+            await state.set_state(UserStates.select_masjid)
+            await state.update_data(masjid_action="subscription")
+            t = await message.answer('.', reply_markup=ReplyKeyboardRemove())
+            await t.delete()
+            await message.answer(
+                CLOSEST_MASJID[data["locale"]],
+                reply_markup=inline.masjidlar_keyboard2(masjids, lang=data["locale"]))
+            return
+        await state.set_state(UserStates.menu)
+        await message.answer(NOT_FOUND_CLOSEST_MASJID[data["locale"]],
+                             reply_markup=reply.main_menu_user(data["locale"]))
+
+
 @user_router.callback_query(factory.RegionData.filter())
 async def get_districts(
         callback_query: CallbackQuery, callback_data: factory.RegionData, state: FSMContext
@@ -325,11 +359,17 @@ async def masjid_info(
         callback_query: CallbackQuery, callback_data: factory.MasjidData, state: FSMContext):
     await state.update_data(current_masjid=callback_data.masjid, current_page=1)
     print("MASJID", callback_data.masjid)
+    m = callback_data.masjid
+    if '|' in callback_data.masjid:
+        m = callback_data.masjid.split('|')[0]
+        await state.update_data(current_region=callback_data.masjid.split('|')[2],
+                                current_district=callback_data.masjid.split('|')[1])
+
     data = await state.get_data()
     print(data, 'MASJID')
     if data.get("masjid_action", False) == "statistic":
         resp = await api.get_statistics(
-            masjid_id=callback_data.masjid,
+            masjid_id=m,
         )
         if resp["success"]:
             if data["locale"] == "uz":
@@ -376,8 +416,16 @@ Oʻzbekiston boʻyicha: {global_count}-oʻrin""".format(
                 reply_markup=inline.stats_main_menu_inline(data["locale"]),
             )
     elif data.get("masjid_action", False) == "subscription":
-        masjid = await api.masjid_info(callback_data.masjid, user_id=callback_query.from_user.id)
+        masjid = await api.masjid_info(m, user_id=callback_query.from_user.id)
         isShown = False
+        # mas = masjid[lang_decode[data["locale"]]],
+        # m1 = masjid['district']['region'][lang_decode[data['locale']]],
+        m2 = masjid["district"][lang_decode[data["locale"]]]
+        if data['locale'] == "uz":
+            text = f"🕌 <b>{masjid[lang_decode[data['locale']]]} namoz vaqtlari</b>\n\n📍 <b>Manzil:</b> {masjid['district']['region'][lang_decode[data['locale']]]}, {m2}\n\n"
+        else:
+            text = f"🕌 <b>{masjid[lang_decode[data['locale']]]} намоз вақтлари</b>\n\n📍 <b>Манзил:</b> {masjid['district']['region'][lang_decode[data['locale']]]}, {m2}\n\n"
+        text += NOT_FOUND_NAMOZ_VAQTI[data['locale']]
         try:
             masjid_date = datetime.strptime(masjid["date"], "%Y-%m-%dT%H:%M:%SZ")
             utc_timezone = pytz.utc
@@ -469,29 +517,28 @@ Azon – {hufton} | Takbir – {hufton2}
 
         markup = inline.masjid_kb(masjid, lang=data["locale"], is_subscribed=masjid["is_subscribed"],
                                   is_subs_menu=callback_data.is_sub)
-        if str(masjid.get("photo", False)) != "None":
-            try:
-                # raise Exception
-                await callback_query.message.answer_photo(
-                    photo=masjid["photo"], caption=text, reply_markup=markup
-                )
-                await callback_query.message.delete()
-            except:
-                print_exc()
-                try:
-                    await callback_query.message.answer_photo(
-                        photo=api.global_url + masjid["photo_file"],
-                        caption=text,
-                        reply_markup=markup,
-                    )
-                    await callback_query.message.delete()
-                except:
-                    print_exc()
-                    await callback_query.message.edit_text(
-                        text=text, reply_markup=markup
-                    )
-        else:
-            await callback_query.message.edit_text(text=text, reply_markup=markup)
+    # if str(masjid.get("photo", False)) != "None":
+        #     try:
+        #         await callback_query.message.answer_photo(
+        #             photo=masjid["photo"], caption=text, reply_markup=markup
+        #         )
+        #         await callback_query.message.delete()
+        #     except:
+        #         print_exc()
+        #         try:
+        #             await callback_query.message.answer_photo(
+        #                 photo=api.global_url + masjid["photo_file"],
+        #                 caption=text,
+        #                 reply_markup=markup,
+        #             )
+        #             await callback_query.message.delete()
+        #         except:
+        #             print_exc()
+        #             await callback_query.message.edit_text(
+        #                 text=text, reply_markup=markup
+        #             )
+        # else:
+        await callback_query.message.edit_text(text=text, reply_markup=markup)
 
 
 @user_router.callback_query(factory.MasjidLocationData.filter())
@@ -534,6 +581,7 @@ async def masjid_info_action(
         )
         return
     elif callback_data.action == "changemasjid":
+
         await get_masjids(callback_query, callback_data=factory.DistrictData(ditrict=data["current_district"],
                                                                              region=data["current_region"]),
                           state=state)

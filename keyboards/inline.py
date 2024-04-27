@@ -1,6 +1,7 @@
 from aiogram.types import InlineKeyboardButton, WebAppInfo
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 
+from handlers.translation import MAIN_MENU
 from keyboards import factory
 from keyboards.factory import _
 
@@ -121,6 +122,28 @@ def masjidlar_keyboard(
         )
     )
 
+    return keyboard.as_markup()
+
+
+def masjidlar_keyboard2(masjid_list, lang="uz"):
+    keyboard = InlineKeyboardBuilder()
+    for masjid in masjid_list:
+        keyboard.row(
+            InlineKeyboardButton(
+                text=masjid[lang_decode[lang]],
+                callback_data=factory.MasjidData(
+                    masjid=f"{masjid['pk']}|{masjid['district']['pk']}|{masjid['district']['region']}",
+                    is_sub=False
+                ).pack(),
+            )
+        )
+    keyboard.adjust(1)
+    keyboard.row(
+        InlineKeyboardButton(
+            text=MAIN_MENU[lang],
+            callback_data=factory.MasjidInfoData(masjid=1, action="main").pack()
+        )
+    )
     return keyboard.as_markup()
 
 

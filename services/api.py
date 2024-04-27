@@ -38,6 +38,15 @@ async def get_districts(region_id):
             return await response.json()
 
 
+async def get_closest_masjids(latitude, longitude):
+    payload = {"latitude": latitude, 'longitude': longitude}
+    async with aiohttp.ClientSession() as session:
+        async with session.get(
+                f"{BASE_URL}/api/closest-masjids/", params=payload
+        ) as response:
+            return await response.json()
+
+
 async def get_masjidlar(district_id, page=1):
     payload = {"district_id": int(district_id), "page": int(page)}
     async with aiohttp.ClientSession() as session:
