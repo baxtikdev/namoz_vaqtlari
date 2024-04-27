@@ -858,7 +858,7 @@ async def namoz_vaqti_callback(
         print("PAGE", page)
         await state.update_data(current_page=page, current_mintaqa=data.get('mintaqa'))
 
-    if callback_data.action == "downl":
+    elif callback_data.action == "downl":
         resp = await api.get_mintaqa_info(callback_data.mintaqa)
         mintaqa_text = resp[lang_decode[data['locale']]]
         text = _(
@@ -874,7 +874,7 @@ async def namoz_vaqti_callback(
 
         )
 
-    if callback_data.action == "changemintaqa":
+    elif callback_data.action == "changemintaqa":
         await callback_query.message.edit_text(
             _("Hududni oʻzgartirish:", locale=data["locale"]),
             reply_markup=inline.mintaqa_viloyat_inline(

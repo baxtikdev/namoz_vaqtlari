@@ -227,12 +227,12 @@ def oylik_namoz_vaqtlari_inline(mintaqa, current_page, has_next, lang="uz", max_
             ).pack(),
         ),
     )
-    keyboard.row(
-        InlineKeyboardButton(
-            text=_("📑 PDF shaklda yuklash", locale=lang),
-            callback_data=factory.NamozVaqtlariData(mintaqa=mintaqa, action="downl").pack()
-        )
-    )
+    # keyboard.row(
+    #     InlineKeyboardButton(
+    #         text=_("📑 PDF shaklda yuklash", locale=lang),
+    #         callback_data=factory.NamozVaqtlariData(mintaqa=mintaqa, action="downl").pack()
+    #     )
+    # )
     keyboard.row(
         InlineKeyboardButton(
             text=_("🏡 Bosh menyu", locale=lang), callback_data=factory.MasjidInfoData(masjid="0", action="main").pack()
